@@ -58,7 +58,7 @@ public class TwitterAPI {
 			return httpPost(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
 		else
 			throw new IOException();
-		}
+	}
 	
 	public static String getAPIResponse(String resource, Method method, SortedMap<String, String> api_params, Keys keys, Tokens tokens)
 			throws IOException, GeneralSecurityException{
@@ -91,7 +91,7 @@ public class TwitterAPI {
 			return httpPost(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
 		else
 			throw new IOException();
-		}
+	}
 	
 	private static String httpGet(String resource, String paramStr, String authHeaderStr)
 			throws IOException{
