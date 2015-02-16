@@ -1,2 +1,3 @@
 # TwitterAPITest
-TwitterAPITest Java
+TwitterAPITest Java  
+java.util.Base64はjava1.8からなので、それ以前のバージョンで利用する場合はCommomCodecなどを利用して適宜書き換えが必要
