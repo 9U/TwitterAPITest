@@ -38,9 +38,9 @@ public class TwitterAPI {
 		oauth_params.put("oauth_nonce", String.valueOf(Math.random()));
 		oauth_params.put("oauth_version", "1.0");
 		
-        for(Entry<String, String> param : api_params.entrySet()){
-            oauth_params.put(param.getKey(), param.getValue());
-        }
+		for(Entry<String, String> param : api_params.entrySet()){
+			oauth_params.put(param.getKey(), param.getValue());
+		}
 		String text = method + "&" + urlEncode(resource) + "&" + urlEncode(buildParamStr(oauth_params));
 		String key = urlEncode(keys.getConsumerSecret()) + "&";
 		SecretKeySpec signingKey = new SecretKeySpec(key.getBytes(), "HmacSHA1");
@@ -48,17 +48,17 @@ public class TwitterAPI {
 		mac.init(signingKey);
 		String signature = new String(Base64.getEncoder().encode(mac.doFinal(text.getBytes())));
 		oauth_params.put("oauth_signature", signature);
-        for(Entry<String, String> param : api_params.entrySet()){
-            oauth_params.remove(param.getKey());
-        }
-        
-        if(method == Method.GET)
-        	return httpGet(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
-        else if(method == Method.POST)
-        	return httpPost(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
-        else
-        	throw new IOException();
-	}
+		for(Entry<String, String> param : api_params.entrySet()){
+			oauth_params.remove(param.getKey());
+		}
+		
+		if(method == Method.GET)
+			return httpGet(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
+		else if(method == Method.POST)
+			return httpPost(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
+		else
+			throw new IOException();
+		}
 	
 	public static String getAPIResponse(String resource, Method method, SortedMap<String, String> api_params, Keys keys, Tokens tokens)
 			throws IOException, GeneralSecurityException{
@@ -69,11 +69,11 @@ public class TwitterAPI {
 		oauth_params.put("oauth_timestamp", String.valueOf(getUnixTime()));
 		oauth_params.put("oauth_nonce", String.valueOf(Math.random()));
 		oauth_params.put("oauth_version", "1.0");
-        oauth_params.put("oauth_token", tokens.getAccessToken());
+		oauth_params.put("oauth_token", tokens.getAccessToken());
 		
-        for(Entry<String, String> param : api_params.entrySet()){
-            oauth_params.put(param.getKey(), param.getValue());
-        }
+		for(Entry<String, String> param : api_params.entrySet()){
+			oauth_params.put(param.getKey(), param.getValue());
+		}
 		String text = method.name() + "&" + urlEncode(resource) + "&" + urlEncode(buildParamStr(oauth_params));
 		String key = urlEncode(keys.getConsumerSecret()) + "&" + urlEncode(tokens.getAccessTokenSecret());
 		SecretKeySpec signingKey = new SecretKeySpec(key.getBytes(), "HmacSHA1");
@@ -81,17 +81,17 @@ public class TwitterAPI {
 		mac.init(signingKey);
 		String signature = new String(Base64.getEncoder().encode(mac.doFinal(text.getBytes())));
 		oauth_params.put("oauth_signature", signature);
-        for(Entry<String, String> param : api_params.entrySet()){
-            oauth_params.remove(param.getKey());
-        }
+		for(Entry<String, String> param : api_params.entrySet()){
+			oauth_params.remove(param.getKey());
+		}
         
-        if(method == Method.GET)
-        	return httpGet(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
-        else if(method == Method.POST)
-        	return httpPost(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
-        else
-        	throw new IOException();
-	}
+		if(method == Method.GET)
+			return httpGet(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
+		else if(method == Method.POST)
+			return httpPost(resource, buildParamStr(api_params), buildAuthHeader(oauth_params));
+		else
+			throw new IOException();
+		}
 	
 	private static String httpGet(String resource, String paramStr, String authHeaderStr)
 			throws IOException{
