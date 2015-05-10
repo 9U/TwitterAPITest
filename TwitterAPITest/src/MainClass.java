@@ -7,26 +7,22 @@ import twittertest.TwitterAPI.Keys;
 import twittertest.TwitterAPI.Method;
 import twittertest.TwitterAPI.Tokens;
 
-
-
 public class MainClass {
 	
-	public static void main(String[] args)
-			throws IOException, GeneralSecurityException{		
+	public static void main(String[] args) throws IOException, GeneralSecurityException {
 		Keys keys = new Keys("", "");
-		
 		Tokens tokens = new Tokens("", "");
-				
+
 		String resBody = TwitterAPI.getAPIResponse(
 			"https://api.twitter.com/1.1/users/show.json",
-			Method.GET, 
-			new TreeMap<String, String>(){
+			Method.GET,
+			new TreeMap<String, String>() {
 				{
 					put("screen_name", "_srsu");
 				}
-			}, 
+			},
 			keys, tokens);
-		
+
 		System.out.println(resBody);
 	}
 }
